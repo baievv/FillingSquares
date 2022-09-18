@@ -5,17 +5,16 @@ import SquareTable from "../square-table";
 import SquareData from "../square-data";
 
 const SquarePanel = (props) => {
-  const [filledSet, setFilledSet] = useState({});
+  const [mainTable, setMainTable] = useState([]);
 
-  const setChange = (set) => {
-    console.log('Incoming set -', set);
-    setFilledSet(set);
+  const setChange = (newTable) => {
+    setMainTable(newTable);
   };
 
    return (
     <Box className="square-box-panel">
       <SquareTable tableSize={props.squareSize} setChange={setChange} />
-      <SquareData newData={filledSet}/>
+      <SquareData newData={mainTable}/>
     </Box>
   );
 };

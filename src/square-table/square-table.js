@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./square-table.css";
-import {createTable} from "../utils-table/create-table";
+import { createTable } from "../utils-table/create-table";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import Table from "@mui/material/Table";
@@ -9,7 +9,6 @@ import TableContainer from "@mui/material/TableContainer";
 import { changeTable } from "../utils-table/change-table";
 
 const SquareTable = (props) => {
-  
   const [exTable, setExTable] = useState([]);
 
   let sizeTable = props.tableSize;
@@ -17,8 +16,7 @@ const SquareTable = (props) => {
   const trHeight = { height: `${650 / props.tableSize}px` };
 
   const onMouseOver = (e) => {
-    console.log(e.target.id);
-    setExTable(changeTable(exTable,e.target.id));
+    setExTable(changeTable(exTable, e.target.id));
     props.setChange(exTable);
   };
 
@@ -26,16 +24,10 @@ const SquareTable = (props) => {
     setExTable(createTable(props.tableSize));
   }, [sizeTable]);
 
-  useEffect(()=>{
-    console.log(exTable);
-  },[exTable]);
-
   return (
     <TableContainer className="table-place">
       <Table className="square-table">
-        <TableBody
-          className="square-table-body"
-          onMouseOver={onMouseOver}>
+        <TableBody className="square-table-body" onMouseOver={onMouseOver}>
           {exTable.map((row) => (
             <TableRow
               key={row[0].idx}
@@ -50,8 +42,7 @@ const SquareTable = (props) => {
                     border: 1,
                     background: cell.color,
                     width: { trHeight },
-                  }}>
-                </TableCell>
+                  }}></TableCell>
               ))}
             </TableRow>
           ))}
