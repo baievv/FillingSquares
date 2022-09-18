@@ -7,7 +7,7 @@ const createTable=(tSize, trSize)=> {
 
     for (let idx = 0; idx < tSize; idx++) {
       let cellID = `cell${i}-${idx}`;
-      cell.push(<td key={cellID} id={cellID}></td>);
+      cell.push(<td key={cellID} id={cellID} style={{backgroundColor:'white'}}></td>);
     }
 
     rows.push(

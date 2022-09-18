@@ -3,7 +3,7 @@ import "./square-table.css";
 import createTable from "../create-table";
 
 const SquareTable = (props) => {
-  const [cellSet, setCellSet] = useState();
+  const [cellSet, setCellSet] = useState(null);
   const [exTable, setExTable] = useState();
 
   let sizeTable = props.tableSize;
@@ -21,19 +21,14 @@ const SquareTable = (props) => {
   const onMouseOver = (e) => {
     console.log(e.target.id);
     let cellColor = e.target.style.backgroundColor;
-    if (cellColor != "blue") {
+    if (cellColor !== "blue") {
       e.target.style.backgroundColor = "blue";
     } else e.target.style.backgroundColor = "white";
     changeSet(e.target.id);
-    console.log(cellSet);
+    props.setChange(cellSet);
   };
 
-  // useEffect(() => {
-  //   setCellSet(new Set());
-  // }, []);
-
   useEffect(() => {
-    console.log("Change");
     setExTable(createTable(props.tableSize, trHeight));
     setCellSet(new Set());
   }, [sizeTable]);

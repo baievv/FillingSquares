@@ -5,21 +5,21 @@ import SquareTable from "../square-table";
 import SquareData from "../square-data";
 
 const SquarePanel = (props) => {
-  // const [size, setSize] = useState(props.squareSize);
-  const [table, setTable] = useState(null);
+  const [filledSet, setFilledSet] = useState();
 
-  const newTable = (table1) => {
-    setTable(table1);
+  const setChange = (set) => {
+    console.log('Incoming set -', set);
+    setFilledSet(set);
   };
 
-  // useEffect(() => {
-  //   setSize(props.squareSize);
-  // }, [props.squareSize]);
+  useEffect(() => {
+    console.log("use effect", filledSet);
+  }, [filledSet]);
 
   return (
     <Box className="square-box-panel">
-      <SquareTable tableSize={props.squareSize} newTable={newTable} />
-      <SquareData newData={table} />
+      <SquareTable tableSize={props.squareSize} setChange={setChange} />
+      <SquareData/>
     </Box>
   );
 };

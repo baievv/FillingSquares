@@ -18,6 +18,7 @@ const ModeChoice = (props) => {
 
   const onClick = () => {
     props.onChoice(modeVariant);
+    console.clear();//delete
   };
 
   useEffect(() => {

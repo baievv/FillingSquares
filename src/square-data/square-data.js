@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./square-data.css";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -6,13 +6,16 @@ import ListItemText from "@mui/material/ListItemText";
 import { FixedSizeList } from "react-window";
 import Box from "@mui/material/Box";
 
-const SquareData = (props) => {
-  const {newData}=props;
-  // console.log(props);
+const SquareData = ({ newData }) => {
+  const [dataItems, setDataItems] = useState(null);
+
+  useEffect(() => {
+    setDataItems(newData);
+    console.log("newData:", newData);
+  }, [dataItems]);
 
   function renderRow(prop) {
     const { index, style } = prop;
-
     return (
       <ListItem style={style} key={index} component="div" disablePadding>
         <ListItemButton>
