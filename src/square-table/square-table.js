@@ -4,7 +4,7 @@ import createTable from "../create-table";
 
 const SquareTable = (props) => {
   const [cellSet, setCellSet] = useState(null);
-  const [exTable, setExTable] = useState();
+  const [exTable, setExTable] = useState([]);
 
   let sizeTable = props.tableSize;
 
@@ -31,6 +31,7 @@ const SquareTable = (props) => {
   useEffect(() => {
     setExTable(createTable(props.tableSize, trHeight));
     setCellSet(new Set());
+    console.log("change table size"); //delete
   }, [sizeTable]);
 
   return (

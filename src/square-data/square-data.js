@@ -6,13 +6,12 @@ import ListItemText from "@mui/material/ListItemText";
 import { FixedSizeList } from "react-window";
 import Box from "@mui/material/Box";
 
-const SquareData = ({ newData }) => {
-  const [dataItems, setDataItems] = useState(null);
+const SquareData = (props) => {
 
-  useEffect(() => {
-    setDataItems(newData);
-    console.log("newData:", newData);
-  }, [dataItems]);
+  const data=props.newData;
+  
+  console.log('SqData- ', data);
+
 
   function renderRow(prop) {
     const { index, style } = prop;
