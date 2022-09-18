@@ -1,48 +1,63 @@
 import React, { useEffect, useState } from "react";
 import "./square-table.css";
-import createTable from "../create-table";
+import {createTable} from "../utils-table/create-table";
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableContainer from "@mui/material/TableContainer";
+import { changeTable } from "../utils-table/change-table";
 
 const SquareTable = (props) => {
-  const [cellSet, setCellSet] = useState(null);
+  
   const [exTable, setExTable] = useState([]);
 
   let sizeTable = props.tableSize;
 
   const trHeight = { height: `${650 / props.tableSize}px` };
 
-  function changeSet(value) {
-    if (!cellSet.has(value)) {
-      cellSet.add(value);
-    } else {
-      cellSet.delete(value);
-    }
-  }
-
   const onMouseOver = (e) => {
     console.log(e.target.id);
-    let cellColor = e.target.style.backgroundColor;
-    if (cellColor !== "blue") {
-      e.target.style.backgroundColor = "blue";
-    } else e.target.style.backgroundColor = "white";
-    changeSet(e.target.id);
-    props.setChange(cellSet);
+    setExTable(changeTable(exTable,e.target.id));
+    props.setChange(exTable);
   };
 
   useEffect(() => {
-    setExTable(createTable(props.tableSize, trHeight));
-    let newSet=new Set();
-    setCellSet(newSet);
-    console.log("change table size"); //delete
+    setExTable(createTable(props.tableSize));
   }, [sizeTable]);
 
+  useEffect(()=>{
+    console.log(exTable);
+  },[exTable]);
+
   return (
-    <div className="table-place">
-      <table className="square-table">
-        <tbody className="square-table-body" onMouseOver={onMouseOver}>
-          {exTable}
-        </tbody>
-      </table>
-    </div>
+    <TableContainer className="table-place">
+      <Table className="square-table">
+        <TableBody
+          className="square-table-body"
+          onMouseOver={onMouseOver}>
+          {exTable.map((row) => (
+            <TableRow
+              key={row[0].idx}
+              sx={{ border: 1, borderColor: "black", height: trHeight }}>
+              {row.map((cell) => (
+                <TableCell
+                  component="td"
+                  key={cell.id}
+                  id={cell.id}
+                  scope="row"
+                  sx={{
+                    border: 1,
+                    background: cell.color,
+                    width: { trHeight },
+                  }}>
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
