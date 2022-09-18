@@ -1,25 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import "./square-panel.css";
 import SquareTable from "../square-table";
 import SquareData from "../square-data";
 
 const SquarePanel = (props) => {
-  // const [size, setSize] = useState(props.squareSize);
-  const [table, setTable] = useState(null);
+  const [mainTable, setMainTable] = useState([]);
 
-  const newTable = (table1) => {
-    setTable(table1);
+  const setChange = (newTable) => {
+    setMainTable(newTable);
   };
 
-  // useEffect(() => {
-  //   setSize(props.squareSize);
-  // }, [props.squareSize]);
-
-  return (
+   return (
     <Box className="square-box-panel">
-      <SquareTable tableSize={props.squareSize} newTable={newTable} />
-      <SquareData newData={table} />
+      <SquareTable tableSize={props.squareSize} setChange={setChange} />
+      <SquareData newData={mainTable}/>
     </Box>
   );
 };

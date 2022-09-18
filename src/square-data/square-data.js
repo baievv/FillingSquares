@@ -1,27 +1,23 @@
 import React from "react";
 import "./square-data.css";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import { FixedSizeList } from "react-window";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 const SquareData = (props) => {
-  const {newData}=props;
-  // console.log(props);
-
-  function renderRow(prop) {
-    const { index, style } = prop;
-
-    return (
-      <ListItem style={style} key={index} component="div" disablePadding>
-        <ListItemButton>
-          <ListItemText primary={`Item ${index + 1}`} />
-        </ListItemButton>
-      </ListItem>
-    );
+  
+  function getFilled(data) {
+    let arr = [];
+    data.map((row) => {
+      row.map((cell) => {
+        if (cell.color == "blue") {
+          arr.push(cell);
+        }
+      });
+    });
+    return arr;
   }
 
+  const items = getFilled(props.newData);
   return (
     <div className="data-panel">
       <div>
@@ -31,19 +27,24 @@ const SquareData = (props) => {
             width: "100%",
             height: 620,
             maxWidth: 190,
-            bgcolor: "background.paper",
+            bgcolor: "white",
           }}>
-          <FixedSizeList
-            height={610}
-            width={190}
-            itemSize={46}
-            itemCount={200}
-            overscanCount={5}>
-            {renderRow}
-          </FixedSizeList>
+          {items.map((item) => (
+            <Button
+              variant="contained"
+              sx={{
+                width: "90%",
+                height: 16,
+                fontSize: "10px",
+                maxWidth: 180,
+              }}>
+              Row {item.idx} Col {item.idy}
+            </Button>
+          ))}
         </Box>
       </div>
     </div>
   );
 };
+
 export default SquareData;
