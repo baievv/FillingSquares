@@ -1,0 +1,8 @@
+.data-panel{
+  width:200px;
+  display: inline;
+  text-align: center;
+}
+h2 {
+  margin: 0 auto 10px;
+}

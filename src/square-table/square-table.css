@@ -1,0 +1,13 @@
+.table-place{
+  width:650px;
+  display: inline;
+}
+.square-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background-color: white;
+}
+.square-table td{
+  border: 1px solid black;
+}

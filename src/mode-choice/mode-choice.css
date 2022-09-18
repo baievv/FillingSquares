@@ -1,0 +1,7 @@
+.mode-choice {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+}
+
